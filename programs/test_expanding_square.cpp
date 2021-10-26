@@ -85,7 +85,7 @@ main(int argc, char** argv)
 
   IMC::PlanSpecification mission_spec;
 
-  IMC::Goto man; // Replace Goto maneuver with the new one ExpandingSquare
+  IMC::ExpandingSquare man; // Replace Goto maneuver with the new one ExpandingSquare
   man.lat = Angles::radians(41.1843982);
   man.lon = Angles::radians(-8.70599224);
   man.z = 0;

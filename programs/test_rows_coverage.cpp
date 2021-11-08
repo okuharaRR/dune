@@ -92,6 +92,9 @@ main(int argc, char** argv)
   man.z_units = IMC::Z_DEPTH;
   man.speed = 1.2;
   man.speed_units = IMC::SUNITS_METERS_PS;
+  man.length = 100;
+  man.width = 10;
+  man.range = 10;
   // Fill the rest of the fields
 
   IMC::PlanManeuver pman;

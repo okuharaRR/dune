@@ -92,6 +92,10 @@ main(int argc, char** argv)
   man.z_units = IMC::Z_DEPTH;
   man.speed = 1.2;
   man.speed_units = IMC::SUNITS_METERS_PS;
+  man.width = 100;
+  man.hstep = 10;
+  // man.length = 100;
+  // man.range = 10;
   // Fill the rest of the fields
 
   IMC::PlanManeuver pman;
@@ -99,7 +103,7 @@ main(int argc, char** argv)
   pman.data.set(man);
 
   mission_spec.maneuvers.push_back(pman);
-  mission_spec.plan_id = "plan-test";
+  mission_spec.plan_id = "plan-test-expanding-square";
   mission_spec.start_man_id = pman.maneuver_id;
 
   cmd.arg.set(mission_spec);

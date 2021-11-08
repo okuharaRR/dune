@@ -40,16 +40,72 @@ namespace Maneuver
   {
     using DUNE_NAMESPACES;
 
+    struct Arguments
+    {
+      //! Altitude Moving Average Samples
+      double altitude_average_size;
+      //! Minimum altitude values to consider for average
+      double min_altitude;
+    };
+
     struct Task: public DUNE::Maneuvers::Maneuver
     {
+      //! Maneuver
+      IMC::ExpandingSquare m_maneuver;
+      //! EstimatedState
+      IMC::EstimatedState m_state;
+      //! DesiredPath
+      IMC::DesiredPath m_path;
+      //! Rows stages parser
+      Maneuvers::RowsStages* m_stages_parser;
+      //! Minimum altitude holder for hstep calculation
+      float m_alt_min;
+      //! Predicted coverage
+      double m_cov_pred;
+      //! Calculated coverage with min. altitude
+      double m_cov_actual_min;
+      //! Current hstep in use
+      double m_cur_hstep;
+      //! Moving average for min. altitude  calculation
+      Math::MovingAverage<float>* m_alt_avrg;
+      //! Stage counter
+      unsigned int m_stage;
+      //! Task arguments
+      Arguments m_args;
+
       //! Constructor.
       //! @param[in] name task name.
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
-        DUNE::Maneuvers::Maneuver(name, ctx)
+        DUNE::Maneuvers::Maneuver(name, ctx),
+        m_stages_parser(NULL),
+        m_alt_min(0),
+        m_cov_pred(0),
+        m_cov_actual_min(0),
+        m_cur_hstep(0),
+        m_alt_avrg(NULL),
+        m_stage(0)
       {
+        param("Altitude Moving Average Samples", m_args.altitude_average_size)
+        .defaultValue("40")
+        .minimumValue("5")
+        .description("Number of samples to average altitude measurements (moving window size)");
+
+        param("Minimum Altitude Value", m_args.min_altitude)
+        .defaultValue("0.3")
+        .minimumValue("0")
+        .description("Process measured altitude values only if above this threshold");
+
         bindToManeuver<Task, IMC::ExpandingSquare>();
         bind<IMC::EstimatedState>(this);
+      }
+
+      //! Destructor
+      virtual
+      ~Task(void)
+      {
+        Memory::clear(m_stages_parser);
+        Memory::clear(m_alt_avrg);
       }
 
       // void onManeuverAcivation(void){...}
@@ -141,8 +197,10 @@ namespace Maneuver
         }
       }
 
+      //! On PathControlState message
+      //! @param[in] pcs pointer to PathControlState message
       void 
-      onPathControlState(const IMC::onPathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs)
       {
         if (m_alt_avrg == NULL)
           return;
@@ -201,7 +259,8 @@ namespace Maneuver
         }
 
         m_stage++;
-        unsigned num_stages = (m_maneuver.flags & IMC::RowsCoverage::FLG_SQUARE_CURVE) ? 3 : 2;
+        unsigned num_stages = (m_maneuver.flags & IMC::ExpandingSquare::FLG_SQUARE_CURVE) ? 3 : 2; 
+        // '&' = Binary AND, '?:' = returns value based on the condition (<conditin>? <true> <false>)
 
         if (m_stage > num_stages)
           m_stage = 1;
@@ -221,52 +280,6 @@ namespace Maneuver
         m_path.flags = 0;
         dispatch(m_path);
       }
-
-      // //! Update internal state with new parameter values.
-      // void
-      // onUpdateParameters(void)
-      // {
-      // }
-
-      // //! Reserve entity identifiers.
-      // void
-      // onEntityReservation(void)
-      // {
-      // }
-
-      // //! Resolve entity names.
-      // void
-      // onEntityResolution(void)
-      // {
-      // }
-
-      // //! Acquire resources.
-      // void
-      // onResourceAcquisition(void)
-      // {
-      // }
-
-      // //! Initialize resources.
-      // void
-      // onResourceInitialization(void)
-      // {
-      // }
-
-      // //! Release resources.
-      // void
-      // onResourceRelease(void)
-      // {
-      // }
-
-      // //! Main loop.
-      // void
-      // onMain(void)
-      // {
-      //   while (!stopping())
-      //   {
-      //     waitForMessages(1.0);
-      //   }
-      // }
     };
   }
 }

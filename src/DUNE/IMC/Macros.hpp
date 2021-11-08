@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 5563261871977bdb0b45e3d1e53b575b                            *
+// IMC XML MD5: 6c31550b7da829e5708e710d202665be                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_MACROS_HPP_INCLUDED_
@@ -438,6 +438,8 @@
 #define DUNE_IMC_SCHEDULEDGOTO 487
 //! RowsCoverage identification number.
 #define DUNE_IMC_ROWSCOVERAGE 488
+//! ExpandingSquare identification number.
+#define DUNE_IMC_EXPANDINGSQUARE 3001
 //! Sample identification number.
 #define DUNE_IMC_SAMPLE 489
 //! ImageTracking identification number.

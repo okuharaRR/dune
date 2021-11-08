@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 6c31550b7da829e5708e710d202665be                            *
+// IMC XML MD5: e1a980d4d20ab8faf89e606e6b9a7a03                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -17203,15 +17203,12 @@ namespace DUNE
       speed = 0;
       speed_units = 0;
       bearing = 0;
-      cross_angle = 0;
       width = 0;
-      length = 0;
       coff = 0;
-      angaperture = 0;
       range = 0;
-      overlap = 0;
       flags = 0;
       custom.clear();
+      hstep = 0;
     }
 
     bool
@@ -17225,15 +17222,12 @@ namespace DUNE
       if (speed != other__.speed) return false;
       if (speed_units != other__.speed_units) return false;
       if (bearing != other__.bearing) return false;
-      if (cross_angle != other__.cross_angle) return false;
       if (width != other__.width) return false;
-      if (length != other__.length) return false;
       if (coff != other__.coff) return false;
-      if (angaperture != other__.angaperture) return false;
       if (range != other__.range) return false;
-      if (overlap != other__.overlap) return false;
       if (flags != other__.flags) return false;
       if (custom != other__.custom) return false;
+      if (hstep != other__.hstep) return false;
       return true;
     }
 
@@ -17243,11 +17237,7 @@ namespace DUNE
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
       if (bearing < 0 || bearing > 6.283185307179586) return false;
-      if (cross_angle < -1.047197551197 || cross_angle > 1.047197551197) return false;
       if (width < 0) return false;
-      if (length < 0) return false;
-      if (angaperture < -3.141592653589793 || angaperture > 3.141592653589793) return false;
-      if (overlap > 100) return false;
       return true;
     }
 
@@ -17262,15 +17252,12 @@ namespace DUNE
       ptr__ += IMC::serialize(speed, ptr__);
       ptr__ += IMC::serialize(speed_units, ptr__);
       ptr__ += IMC::serialize(bearing, ptr__);
-      ptr__ += IMC::serialize(cross_angle, ptr__);
       ptr__ += IMC::serialize(width, ptr__);
-      ptr__ += IMC::serialize(length, ptr__);
       ptr__ += IMC::serialize(coff, ptr__);
-      ptr__ += IMC::serialize(angaperture, ptr__);
       ptr__ += IMC::serialize(range, ptr__);
-      ptr__ += IMC::serialize(overlap, ptr__);
       ptr__ += IMC::serialize(flags, ptr__);
       ptr__ += IMC::serialize(custom, ptr__);
+      ptr__ += IMC::serialize(hstep, ptr__);
       return ptr__;
     }
 
@@ -17285,15 +17272,12 @@ namespace DUNE
       bfr__ += IMC::deserialize(speed, bfr__, size__);
       bfr__ += IMC::deserialize(speed_units, bfr__, size__);
       bfr__ += IMC::deserialize(bearing, bfr__, size__);
-      bfr__ += IMC::deserialize(cross_angle, bfr__, size__);
       bfr__ += IMC::deserialize(width, bfr__, size__);
-      bfr__ += IMC::deserialize(length, bfr__, size__);
       bfr__ += IMC::deserialize(coff, bfr__, size__);
-      bfr__ += IMC::deserialize(angaperture, bfr__, size__);
       bfr__ += IMC::deserialize(range, bfr__, size__);
-      bfr__ += IMC::deserialize(overlap, bfr__, size__);
       bfr__ += IMC::deserialize(flags, bfr__, size__);
       bfr__ += IMC::deserialize(custom, bfr__, size__);
+      bfr__ += IMC::deserialize(hstep, bfr__, size__);
       return bfr__ - start__;
     }
 
@@ -17308,15 +17292,12 @@ namespace DUNE
       bfr__ += IMC::reverseDeserialize(speed, bfr__, size__);
       bfr__ += IMC::deserialize(speed_units, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(bearing, bfr__, size__);
-      bfr__ += IMC::reverseDeserialize(cross_angle, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(width, bfr__, size__);
-      bfr__ += IMC::reverseDeserialize(length, bfr__, size__);
       bfr__ += IMC::deserialize(coff, bfr__, size__);
-      bfr__ += IMC::reverseDeserialize(angaperture, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(range, bfr__, size__);
-      bfr__ += IMC::deserialize(overlap, bfr__, size__);
       bfr__ += IMC::deserialize(flags, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(custom, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(hstep, bfr__, size__);
       return bfr__ - start__;
     }
 
@@ -17330,15 +17311,12 @@ namespace DUNE
       IMC::toJSON(os__, "speed", speed, nindent__);
       IMC::toJSON(os__, "speed_units", speed_units, nindent__);
       IMC::toJSON(os__, "bearing", bearing, nindent__);
-      IMC::toJSON(os__, "cross_angle", cross_angle, nindent__);
       IMC::toJSON(os__, "width", width, nindent__);
-      IMC::toJSON(os__, "length", length, nindent__);
       IMC::toJSON(os__, "coff", coff, nindent__);
-      IMC::toJSON(os__, "angaperture", angaperture, nindent__);
       IMC::toJSON(os__, "range", range, nindent__);
-      IMC::toJSON(os__, "overlap", overlap, nindent__);
       IMC::toJSON(os__, "flags", flags, nindent__);
       IMC::toJSON(os__, "custom", custom, nindent__);
+      IMC::toJSON(os__, "hstep", hstep, nindent__);
     }
 
     Sample::Sample(void)

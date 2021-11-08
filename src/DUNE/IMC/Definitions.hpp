@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 6c31550b7da829e5708e710d202665be                            *
+// IMC XML MD5: e1a980d4d20ab8faf89e606e6b9a7a03                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -16149,24 +16149,18 @@ namespace DUNE
       uint8_t speed_units;
       //! Bearing.
       fp64_t bearing;
-      //! Cross Angle.
-      fp64_t cross_angle;
       //! Width.
       fp32_t width;
-      //! Length.
-      fp32_t length;
       //! Curve Offset.
       uint8_t coff;
-      //! Angular Aperture.
-      fp32_t angaperture;
       //! Range.
       uint16_t range;
-      //! Overlap.
-      uint8_t overlap;
       //! Flags.
       uint8_t flags;
       //! Custom settings for maneuver.
       std::string custom;
+      //! H step.
+      fp64_t hstep;
 
       static uint16_t
       getIdStatic(void)
@@ -16215,7 +16209,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 59;
+        return 50;
       }
 
       unsigned
